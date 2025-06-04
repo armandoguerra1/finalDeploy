@@ -9,7 +9,7 @@ WORKDIR $CATALINA_HOME
 
 # Instalar herramientas necesarias
 RUN apt-get update && \
-    apt-get install -y curl ant && \
+    apt-get install -y curl ant default-jdk && \
     rm -rf /var/lib/apt/lists/*
 
 # Descargar y configurar Tomcat
@@ -24,8 +24,16 @@ WORKDIR /app
 # Copiar el código fuente
 COPY . .
 
-# Construir el proyecto con Ant en modo verbose
-RUN ant -verbose
+# Dar permisos de ejecución a los scripts
+RUN chmod +x ./nbproject/build-impl.xml
+RUN chmod +x ./build.xml
+
+# Mostrar el contenido del directorio para debugging
+RUN ls -la
+RUN pwd
+
+# Construir el proyecto con Ant en modo verbose y debug
+RUN ant -verbose -debug
 
 # Copiar el WAR generado al directorio webapps de Tomcat
 RUN cp dist/finalDeVerdad.war $CATALINA_HOME/webapps/ROOT.war
