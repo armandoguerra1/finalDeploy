@@ -8,7 +8,7 @@ RUN mkdir -p "$CATALINA_HOME"
 WORKDIR $CATALINA_HOME
 
 # Descargar y configurar Tomcat
-RUN curl -fsSL https://downloads.apache.org/tomcat/tomcat-9/v9.0.87/bin/apache-tomcat-9.0.87.tar.gz | tar xzf - \
+RUN curl -fsSL https://downloads.apache.org/tomcat/tomcat-9/v9.0.105/bin/apache-tomcat-9.0.105.tar.gz | tar xzf - \
     --strip-components=1 \
     && rm bin/*.bat \
     && rm bin/*.tar.gz
