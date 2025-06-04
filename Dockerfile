@@ -24,8 +24,8 @@ WORKDIR /app
 # Copiar el código fuente
 COPY . .
 
-# Construir el proyecto con Ant
-RUN ant
+# Construir el proyecto con Ant en modo verbose
+RUN ant -verbose
 
 # Copiar el WAR generado al directorio webapps de Tomcat
 RUN cp dist/finalDeVerdad.war $CATALINA_HOME/webapps/ROOT.war
